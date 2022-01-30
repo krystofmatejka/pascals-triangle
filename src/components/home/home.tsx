@@ -6,7 +6,7 @@ import {Transformation} from '@/src/components/constants'
 import {Menu} from '@/src/components/menu'
 import {pascalsTriangle} from '@/src/components/lib'
 import {useRecalculateNumberWidth} from '@/src/components/hooks'
-import {findIndexesForFibonacci, calculateFibonacciNumberByIndexes} from '@/src/components/lib/fibonacci'
+import {calculateFibonacciNumberByIndexes, findIndexesForFibonacci} from '@/src/components/lib/fibonacci'
 
 export const Home: FC = () => {
   const {numberOfFloors, transformation} = usePascalsTriangleStore()
@@ -15,7 +15,6 @@ export const Home: FC = () => {
 
   useRecalculateNumberWidth({triangle, transformation})
 
-  console.log({highlightedIndexes})
   return (
     <>
       <Menu/>
@@ -33,6 +32,16 @@ export const Home: FC = () => {
               } if (transformation === Transformation.FibonacciSequence) {
                 const isHighlighted = (highlightedIndexes[rowIndex] === index)
                 return <Number key={index} highlight={isHighlighted ? 'red': undefined}>{number}</Number>
+              } if (transformation === Transformation.None) {
+                const isHighlighted = (
+                  highlightedIndexes[0] === rowIndex + 1
+                  && (highlightedIndexes[1] === index +1 || highlightedIndexes[1] === index))
+
+                return <Number key={index} highlight={isHighlighted ? 'red': undefined} onMouseEnter={() => {
+                  if (transformation === Transformation.None) {
+                    setHighlightedIndexes(() => [rowIndex, index])
+                  }
+                }}>{number}</Number>
               } else {
                 return <Number key={index}>{number}</Number>
               }
