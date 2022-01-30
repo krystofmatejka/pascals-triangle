@@ -1,6 +1,11 @@
 import {FC, useState, useEffect, useRef} from 'react'
 import styled from 'styled-components'
 
+enum Transformation {
+  None,
+  Sierpinski_Triangle
+}
+
 export const pascalsTriangle = (n) => {
   const triangle = [
     [1],
@@ -61,30 +66,41 @@ const Number = styled.div<{highlight?: string}>`
 
 export const Home: FC = () => {
   const [floor, setFloor] = useState(6)
+  const [transformation, setTransformation] = useState(Transformation.None)
   const containerRef = useRef<HTMLDivElement>()
   const triangle = pascalsTriangle(floor)
 
   useEffect(() => {
-    const biggestNumber = getBiggestNumberFromTriangle(triangle)
-    const leftPadding = numberOfDigits(biggestNumber)
-    const width = 20 + leftPadding * 10
+    if (transformation === Transformation.None) {
+      const biggestNumber = getBiggestNumberFromTriangle(triangle)
+      const leftPadding = numberOfDigits(biggestNumber)
+      const width = 20 + leftPadding * 10
 
-    document.documentElement.style.setProperty('--number-width', `${width}px`)
-  }, [triangle])
+      document.documentElement.style.setProperty('--number-width', `${width}px`)
+    }
+
+    if (transformation === Transformation.Sierpinski_Triangle) {
+      document.documentElement.style.setProperty('--number-width', '40px')
+    }
+  }, [triangle, transformation])
 
   return (
     <>
-      <Menu/>
+      <Menu selectTransformation={setTransformation}/>
       <ContainerInput>
         <input type='number' min='0' max='100' value={floor} onChange={(e) => setFloor(parseInt(e.target.value))}/>
       </ContainerInput>
       <Container ref={containerRef}>
         {triangle.map((row, index) => (
           <Row key={index}>
-            {row.map((number, index) => (
-              <Number key={index}>{number}</Number>
-              //<Number key={index} highlight={(number % 2) ? null: '#c5eeb9'}>{number % 2}</Number>
-            ))}
+            {row.map((number, index) => {
+              if (transformation === Transformation.None) {
+                return <Number key={index}>{number}</Number>
+              }
+              if (transformation === Transformation.Sierpinski_Triangle) {
+                return <Number key={index} highlight={(number % 2) ? null: '#c5eeb9'}>{number % 2}</Number>
+              }
+            })}
           </Row>
         ))}
       </Container>
@@ -97,18 +113,27 @@ const MenuContainer = styled.ul<{visible: boolean}>`
   transform: ${p => p.visible ? 'translateX(0)' : 'translateX(-100%)'};
   transition: transform ease 0.3s;
   background: #fff;
+
+  & > li {
+    cursor: pointer;
+  }
+
+  & > li:hover {
+    text-decoration: underline;
+  }
 `
 
-const Menu: FC = () => {
+const Menu: FC<{selectTransformation: (t: Transformation) => void}> = ({selectTransformation}) => {
   const [visible, setVisible] = useState(true)
 
   return (
     <div>
       <button onClick={() => setVisible((previous) => !previous)}>{visible ? 'Hide Menu': 'Show Menu'}</button>
       <MenuContainer visible={visible}>
+        <li onClick={() => selectTransformation(Transformation.None)}>None</li>
         <li>Power 2</li>
         <li>Prime numbers</li>
-        <li>The Sierpinski Triangle</li>
+        <li onClick={() => selectTransformation(Transformation.Sierpinski_Triangle)}>The Sierpinski Triangle</li>
       </MenuContainer>
     </div>
   )
