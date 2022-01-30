@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 enum Transformation {
   None,
+  Power_2,
   Sierpinski_Triangle
 }
 
@@ -71,7 +72,7 @@ export const Home: FC = () => {
   const triangle = pascalsTriangle(floor)
 
   useEffect(() => {
-    if (transformation === Transformation.None) {
+    if (transformation === Transformation.None || transformation === Transformation.Power_2) {
       const biggestNumber = getBiggestNumberFromTriangle(triangle)
       const leftPadding = numberOfDigits(biggestNumber)
       const width = 20 + leftPadding * 10
@@ -94,18 +95,32 @@ export const Home: FC = () => {
         {triangle.map((row, index) => (
           <Row key={index}>
             {row.map((number, index) => {
-              if (transformation === Transformation.None) {
+              if (transformation === Transformation.None || transformation === Transformation.Power_2) {
                 return <Number key={index}>{number}</Number>
               }
               if (transformation === Transformation.Sierpinski_Triangle) {
                 return <Number key={index} highlight={(number % 2) ? null: '#c5eeb9'}>{number % 2}</Number>
               }
             })}
+            {(transformation === Transformation.Power_2) && <Power2 triangleRow={row} rowIndex={index}/>}
           </Row>
         ))}
       </Container>
     </>
   )
+}
+
+const StyledPower2 = styled(Number)`
+  position: absolute;
+  right: 20px;
+  background: #bed7ee;
+  width: auto;
+  padding: 5px 10px;
+`
+
+const Power2: FC<{triangleRow: number[], rowIndex: number}> = ({triangleRow, rowIndex}) => {
+  const sumOfRow = triangleRow.reduce((p, c) => p + c, 0)
+  return <StyledPower2>2^{rowIndex}&nbsp;=&nbsp;{sumOfRow}</StyledPower2>
 }
 
 const MenuContainer = styled.ul<{visible: boolean}>`
@@ -131,7 +146,7 @@ const Menu: FC<{selectTransformation: (t: Transformation) => void}> = ({selectTr
       <button onClick={() => setVisible((previous) => !previous)}>{visible ? 'Hide Menu': 'Show Menu'}</button>
       <MenuContainer visible={visible}>
         <li onClick={() => selectTransformation(Transformation.None)}>None</li>
-        <li>Power 2</li>
+        <li onClick={() => selectTransformation(Transformation.Power_2)}>Power 2</li>
         <li>Prime numbers</li>
         <li onClick={() => selectTransformation(Transformation.Sierpinski_Triangle)}>The Sierpinski Triangle</li>
       </MenuContainer>
