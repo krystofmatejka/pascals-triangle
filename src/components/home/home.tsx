@@ -1,11 +1,11 @@
 import {FC, useRef} from 'react'
 import styled from 'styled-components'
 import {FloorSelector} from '../floor-selector'
-import {usePascalsTriangleStore} from '@/src/components/templates/store'
-import {Transformation} from '@/src/components/templates/constants'
+import {usePascalsTriangleStore} from '@/src/components/store'
+import {Transformation} from '@/src/components/constants'
 import {Menu} from '../menu'
-import {pascalsTriangle} from '@/src/components/templates/lib'
-import {useRecalculateNumberWidth} from '@/src/components/templates/hooks'
+import {pascalsTriangle} from '@/src/components/lib'
+import {useRecalculateNumberWidth} from '@/src/components/hooks'
 
 const Container = styled.div``
 

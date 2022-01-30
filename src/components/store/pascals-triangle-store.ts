@@ -1,5 +1,5 @@
 import create from 'zustand'
-import {Transformation} from '@/src/components/templates/constants'
+import {Transformation} from '@/src/components/constants'
 
 type PascalsTriangleStore = {
   numberOfFloors: number

@@ -1,7 +1,7 @@
 import {FC, useState} from 'react'
 import styled from 'styled-components'
-import {Transformation} from '@/src/components/templates/constants'
-import {usePascalsTriangleStore} from '@/src/components/templates/store'
+import {Transformation} from '@/src/components/constants'
+import {usePascalsTriangleStore} from '@/src/components/store'
 
 const MenuContainer = styled.ul<{visible: boolean}>`
   position: absolute;

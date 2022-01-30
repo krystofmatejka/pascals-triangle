@@ -1,6 +1,6 @@
 import {FC} from 'react'
 import styled from 'styled-components'
-import {usePascalsTriangleStore} from '@/src/components/templates/store'
+import {usePascalsTriangleStore} from '@/src/components/store'
 
 const ContainerInput = styled.div`
   display: flex;
