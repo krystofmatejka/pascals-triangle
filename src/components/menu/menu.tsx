@@ -16,6 +16,11 @@ const MenuItems = [
     label: 'The Sierpinski Triangle',
     transformation: Transformation.Sierpinski_Triangle,
   },
+  {
+    label: 'Fibonacci Sequence',
+    description: 'select row to calculate fibonacci sequence',
+    transformation: Transformation.FibonacciSequence,
+  },
 ]
 
 export const Menu: FC = () => {
@@ -26,15 +31,20 @@ export const Menu: FC = () => {
     <div>
       <button onClick={() => setVisible((previous) => !previous)}>{visible ? 'Hide Menu': 'Show Menu'}</button>
       <MenuContainer visible={visible}>
-        {MenuItems.map((item) => (
-          <Row
-            key={item.label}
-            active={transformation === item.transformation}
-            onClick={() => setTransformation(item.transformation)}
-          >
-            {item.label}
-          </Row>
-        ))}
+        {MenuItems.map((item) => {
+          const isActive = transformation === item.transformation
+
+          return (
+            <Row
+              key={item.label}
+              active={isActive}
+              onClick={() => setTransformation(item.transformation)}
+            >
+              <a>{item.label}</a>
+              {isActive && item.description && <Description>{item.description}</Description>}
+            </Row>
+          )
+        })}
       </MenuContainer>
     </div>
   )
@@ -42,16 +52,26 @@ export const Menu: FC = () => {
 
 const MenuContainer = styled.ul<{visible: boolean}>`
   position: absolute;
+  z-index: 1;
   transform: ${p => p.visible ? 'translateX(0)' : 'translateX(-100%)'};
   transition: transform ease 0.3s;
   background: #fff;
 `
 
 const Row = styled.li<{active?: boolean}>`
-  cursor: pointer;
-  text-decoration: ${p => p.active ? 'underline' : 'none'};
+  & > a {
+    text-decoration: ${p => p.active ? 'underline' : 'none'};
+  }
 
-  &:hover {
+  &:hover > a {
+    cursor: pointer;
     text-decoration: underline;
   }
+`
+
+const Description = styled.p`
+  text-decoration: none;
+  padding: 0;
+  margin: 5px 0;
+  font-size: 0.8rem;
 `

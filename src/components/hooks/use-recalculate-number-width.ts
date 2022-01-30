@@ -9,14 +9,12 @@ type UseRecalculateNumberWidthProps = {
 
 export const useRecalculateNumberWidth = ({triangle, transformation}: UseRecalculateNumberWidthProps) => {
   useEffect(() => {
-    if (transformation === Transformation.None || transformation === Transformation.Power_2) {
+    if (transformation === Transformation.Sierpinski_Triangle) {
+      document.documentElement.style.setProperty('--number-width', '30px')
+    } else {
       const width = calculateWidth(triangle, 10)
 
       document.documentElement.style.setProperty('--number-width', `${width}px`)
-    }
-
-    if (transformation === Transformation.Sierpinski_Triangle) {
-      document.documentElement.style.setProperty('--number-width', '40px')
     }
   }, [triangle, transformation])
 }
