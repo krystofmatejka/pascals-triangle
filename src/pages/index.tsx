@@ -1,9 +1,9 @@
 import React from 'react'
-import {Header} from '@/src/components'
+import {Home as HomeTemplate} from '@/src/components/templates'
 
 const Home = () => {
   return (
-    <Header text='Heading'/>
+    <HomeTemplate/>
   )
 }
 

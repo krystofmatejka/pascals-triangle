@@ -7,6 +7,10 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     background: #fff;
   }
+
+  :root {
+    --number-width: 40px;
+  }
 `
 
 const App = ({Component, pageProps}) => {
