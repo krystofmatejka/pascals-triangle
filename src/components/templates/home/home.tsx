@@ -120,7 +120,7 @@ const StyledPower2 = styled(Number)`
 
 const Power2: FC<{triangleRow: number[], rowIndex: number}> = ({triangleRow, rowIndex}) => {
   const sumOfRow = triangleRow.reduce((p, c) => p + c, 0)
-  return <StyledPower2>2^{rowIndex}&nbsp;=&nbsp;{sumOfRow}</StyledPower2>
+  return <StyledPower2>{sumOfRow}&nbsp;=&nbsp;2^{rowIndex}</StyledPower2>
 }
 
 const MenuContainer = styled.ul<{visible: boolean}>`
