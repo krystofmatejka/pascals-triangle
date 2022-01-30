@@ -45,14 +45,15 @@ const Row = styled.div`
   justify-content: center;
 `
 
-const Number = styled.div`
+const Number = styled.div<{highlight?: string}>`
   padding: 5px 0;
   margin: 5px;
   width: var(--number-width);
   text-align: center;
+  transition: width ease 0.3s;
 
   border-radius: 5px;
-  background: #e0e0e0;
+  background: ${p => p.highlight ?? '#e0e0e0'};
   
   font-family: monospace;
   font-size: 1rem;
@@ -73,6 +74,7 @@ export const Home: FC = () => {
 
   return (
     <>
+      <Menu/>
       <ContainerInput>
         <input type='number' min='0' max='100' value={floor} onChange={(e) => setFloor(parseInt(e.target.value))}/>
       </ContainerInput>
@@ -81,10 +83,33 @@ export const Home: FC = () => {
           <Row key={index}>
             {row.map((number, index) => (
               <Number key={index}>{number}</Number>
+              //<Number key={index} highlight={(number % 2) ? null: '#c5eeb9'}>{number % 2}</Number>
             ))}
           </Row>
         ))}
       </Container>
     </>
+  )
+}
+
+const MenuContainer = styled.ul<{visible: boolean}>`
+  position: absolute;
+  transform: ${p => p.visible ? 'translateX(0)' : 'translateX(-100%)'};
+  transition: transform ease 0.3s;
+  background: #fff;
+`
+
+const Menu: FC = () => {
+  const [visible, setVisible] = useState(true)
+
+  return (
+    <div>
+      <button onClick={() => setVisible((previous) => !previous)}>{visible ? 'Hide Menu': 'Show Menu'}</button>
+      <MenuContainer visible={visible}>
+        <li>Power 2</li>
+        <li>Prime numbers</li>
+        <li>The Sierpinski Triangle</li>
+      </MenuContainer>
+    </div>
   )
 }
