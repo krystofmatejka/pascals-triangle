@@ -2,12 +2,6 @@ import {FC} from 'react'
 import styled from 'styled-components'
 import {usePascalsTriangleStore} from '@/src/components/store'
 
-const ContainerInput = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-`
-
 export const FloorSelector: FC = () => {
   const {
     numberOfFloors,
@@ -26,3 +20,9 @@ export const FloorSelector: FC = () => {
     </ContainerInput>
   )
 }
+
+const ContainerInput = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+`

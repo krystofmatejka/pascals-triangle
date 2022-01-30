@@ -10,7 +10,7 @@ type UseRecalculateNumberWidthProps = {
 export const useRecalculateNumberWidth = ({triangle, transformation}: UseRecalculateNumberWidthProps) => {
   useEffect(() => {
     if (transformation === Transformation.None || transformation === Transformation.Power_2) {
-      const width = calculateWidth(triangle)
+      const width = calculateWidth(triangle, 10)
 
       document.documentElement.style.setProperty('--number-width', `${width}px`)
     }

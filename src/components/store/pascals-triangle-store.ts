@@ -8,11 +8,9 @@ type PascalsTriangleStore = {
   setTransformation: (t: Transformation) => void
 }
 
-export const usePascalsTriangleStore = create<PascalsTriangleStore>((set) => {
-  return {
-    numberOfFloors: 6,
-    transformation: Transformation.None,
-    setNumberOfFloors: (v: number) => set({numberOfFloors: v}),
-    setTransformation: (t: Transformation) => set({transformation: t}),
-  }
-})
+export const usePascalsTriangleStore = create<PascalsTriangleStore>((set) => ({
+  numberOfFloors: 6,
+  transformation: Transformation.None,
+  setNumberOfFloors: (v: number) => set({numberOfFloors: v}),
+  setTransformation: (t: Transformation) => set({transformation: t}),
+}))

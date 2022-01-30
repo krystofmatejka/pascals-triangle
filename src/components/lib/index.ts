@@ -31,9 +31,9 @@ const getBiggestNumberFromTriangle = (triangle: Triangle) => {
 
 const numberOfDigits = (n: number) => Math.max(Math.floor(Math.log10(Math.abs(n))), 0) + 1
 
-export const calculateWidth = (triangle: Triangle) => {
+export const calculateWidth = (triangle: Triangle, padding: number) => {
   const biggestNumber = getBiggestNumberFromTriangle(triangle)
-  const leftPadding = numberOfDigits(biggestNumber)
+  const totalNumberOfDigits = numberOfDigits(biggestNumber)
 
-  return 20 + leftPadding * 10
+  return (totalNumberOfDigits + 2) * padding
 }
