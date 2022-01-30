@@ -8,6 +8,7 @@ Simple template for js web application
  - react
  - typescript
  - styled components
+ - jest
  - storybook
 
 ## Quick start
@@ -22,6 +23,12 @@ npm install
 
 ```bash
 npm run dev
+```
+
+### Run jest
+
+```bash
+npm test
 ```
 
 ### Run storybook
