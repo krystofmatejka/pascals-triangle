@@ -15,19 +15,15 @@ export const TrianglePower2 = (): JSX.Element[] => {
           {number}
         </Number>
       ))}
-      <Power2 triangleRow={row} rowIndex={rowIndex}/>
+      <Power2>{sum(row)}&nbsp;=&nbsp;2^{rowIndex}</Power2>
     </Row>
   ))
 }
 
-const StyledPower2 = styled(Number)`
+const Power2 = styled(Number)`
   position: absolute;
   right: 20px;
-  background: #bed7ee;
+  background: var(--highlight-3);
   width: auto;
   padding: 5px 10px;
 `
-
-const Power2: FC<{triangleRow: number[], rowIndex: number}> = ({triangleRow, rowIndex}) => {
-  return <StyledPower2>{sum(triangleRow)}&nbsp;=&nbsp;2^{rowIndex}</StyledPower2>
-}

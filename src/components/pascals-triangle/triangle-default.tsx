@@ -8,14 +8,14 @@ const pickHighlight = (currentIndex: Index, highlightedIndex: Index) => {
   if (
     highlightedIndex[0] === currentIndex[0] + 1
     && (highlightedIndex[1] === currentIndex[1] +1 || highlightedIndex[1] === currentIndex[1])) {
-    return '--highlight-2'
+    return '--highlight-3'
   }
 
   if (
     currentIndex[0] === highlightedIndex[0]
     && currentIndex[1] === highlightedIndex[1]
   ) {
-    return '--highlight-3'
+    return '--highlight-2'
   }
 
   return undefined
