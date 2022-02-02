@@ -2,29 +2,40 @@ import {useState} from 'react'
 import {usePascalsTriangleStore} from '@/src/components/store'
 import {Row, Number} from './styles'
 
-export const TriangleDefault = () => {
+type Index = [number, number]
+
+const pickHighlight = (currentIndex: Index, highlightedIndex: Index) => {
+  if (
+    highlightedIndex[0] === currentIndex[0] + 1
+    && (highlightedIndex[1] === currentIndex[1] +1 || highlightedIndex[1] === currentIndex[1])) {
+    return '--highlight-2'
+  }
+
+  if (
+    currentIndex[0] === highlightedIndex[0]
+    && currentIndex[1] === highlightedIndex[1]
+  ) {
+    return '--highlight-3'
+  }
+
+  return undefined
+}
+
+export const TriangleDefault = (): JSX.Element[] => {
   const {triangle} = usePascalsTriangleStore()
-  const [highlightedIndexes, setHighlightedIndexes] = useState([])
+  const [highlightedIndex, setHighlightedIndex] = useState<Index>([-1, -1])
 
   return triangle.map((row, rowIndex) => (
     <Row key={rowIndex}>
-      {row.map((number, numberIndex) => {
-        const isHighlighted = (
-          highlightedIndexes[0] === rowIndex + 1
-              && (highlightedIndexes[1] === numberIndex +1 || highlightedIndexes[1] === numberIndex))
-
-        return (
-          <Number
-            key={numberIndex}
-            highlight={isHighlighted ? 'red': undefined}
-            onMouseEnter={() => {
-              setHighlightedIndexes(() => [rowIndex, numberIndex])
-            }}
-          >
-            {number}
-          </Number>
-        )
-      })}
+      {row.map((number, numberIndex) => (
+        <Number
+          key={numberIndex}
+          highlight={pickHighlight([rowIndex, numberIndex], highlightedIndex)}
+          onMouseEnter={() => setHighlightedIndex(() => [rowIndex, numberIndex])}
+        >
+          {number}
+        </Number>
+      ))}
     </Row>
   ))
 }

@@ -16,7 +16,7 @@ export const TriangleFibonacciSequence: FC = () => {
             const isHighlighted = (highlightedIndexes[rowIndex] === numberIndex)
 
             return (
-              <Number key={numberIndex} highlight={isHighlighted ? 'red': undefined}>
+              <Number key={numberIndex} highlight={isHighlighted ? '--highlight-2': undefined}>
                 {number}
               </Number>
             )})}

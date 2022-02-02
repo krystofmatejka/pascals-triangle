@@ -3,7 +3,9 @@ import styled from 'styled-components'
 import {usePascalsTriangleStore} from '@/src/components/store'
 import {Row, Number} from './styles'
 
-export const TrianglePower2 = () => {
+const sum = (numbers: number[]) => numbers.reduce((p, c) => p + c, 0)
+
+export const TrianglePower2 = (): JSX.Element[] => {
   const {triangle} = usePascalsTriangleStore()
 
   return triangle.map((row, rowIndex) => (
@@ -27,6 +29,5 @@ const StyledPower2 = styled(Number)`
 `
 
 const Power2: FC<{triangleRow: number[], rowIndex: number}> = ({triangleRow, rowIndex}) => {
-  const sumOfRow = triangleRow.reduce((p, c) => p + c, 0)
-  return <StyledPower2>{sumOfRow}&nbsp;=&nbsp;2^{rowIndex}</StyledPower2>
+  return <StyledPower2>{sum(triangleRow)}&nbsp;=&nbsp;2^{rowIndex}</StyledPower2>
 }

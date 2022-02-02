@@ -7,11 +7,7 @@ import {SierpinskiTriangle} from './sierpinski-triangle'
 import {TriangleFibonacciSequence} from './triangle-fibonacci-sequence'
 import {usePascalsTriangleStore} from '@/src/components/store'
 
-type PascalsTriangleComponentProps = {
-  transformation: Transformation
-}
-
-const PascalsTriangleComponent: FC<PascalsTriangleComponentProps> = ({transformation}) => {
+const chooseTriangle = (transformation: Transformation) => {
   switch (transformation) {
   case Transformation.None:
     return <TriangleDefault/>
@@ -29,7 +25,7 @@ export const PascalsTriangle: FC = () => {
 
   return (
     <Container>
-      <PascalsTriangleComponent transformation={transformation}/>
+      {chooseTriangle(transformation)}
     </Container>
   )
 }
