@@ -10,16 +10,20 @@ const MenuItems = [
   },
   {
     label: 'Power 2',
-    transformation: Transformation.Power_2,
+    transformation: Transformation.Power2,
   },
   {
     label: 'The Sierpinski Triangle',
-    transformation: Transformation.Sierpinski_Triangle,
+    transformation: Transformation.SierpinskiTriangle,
   },
   {
     label: 'Fibonacci Sequence',
     description: 'select row to calculate fibonacci sequence',
     transformation: Transformation.FibonacciSequence,
+  },
+  {
+    label: 'Hockey stick pattern',
+    transformation: Transformation.HockeyStick,
   },
 ]
 

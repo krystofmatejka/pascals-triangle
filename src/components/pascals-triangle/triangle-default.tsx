@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {FC, useState} from 'react'
 import {usePascalsTriangleStore} from '@/src/components/store'
 import {Row, Number} from './styles'
 
@@ -21,21 +21,25 @@ const pickHighlight = (currentIndex: Index, highlightedIndex: Index) => {
   return undefined
 }
 
-export const TriangleDefault = (): JSX.Element[] => {
+export const TriangleDefault: FC = () => {
   const {triangle} = usePascalsTriangleStore()
   const [highlightedIndex, setHighlightedIndex] = useState<Index>([-1, -1])
 
-  return triangle.map((row, rowIndex) => (
-    <Row key={rowIndex}>
-      {row.map((number, numberIndex) => (
-        <Number
-          key={numberIndex}
-          highlight={pickHighlight([rowIndex, numberIndex], highlightedIndex)}
-          onMouseEnter={() => setHighlightedIndex(() => [rowIndex, numberIndex])}
-        >
-          {number}
-        </Number>
+  return (
+    <>
+      {triangle.map((row, rowIndex) => (
+        <Row key={rowIndex}>
+          {row.map((number, numberIndex) => (
+            <Number
+              key={numberIndex}
+              highlight={pickHighlight([rowIndex, numberIndex], highlightedIndex)}
+              onMouseEnter={() => setHighlightedIndex(() => [rowIndex, numberIndex])}
+            >
+              {number}
+            </Number>
+          ))}
+        </Row>
       ))}
-    </Row>
-  ))
+    </>
+  )
 }

@@ -5,18 +5,21 @@ import {TriangleDefault} from './triangle-default'
 import {TrianglePower2} from './triangle-power-2'
 import {SierpinskiTriangle} from './sierpinski-triangle'
 import {TriangleFibonacciSequence} from './triangle-fibonacci-sequence'
+import {TriangleHockeyStick} from './triangle-hockey-stick'
 import {usePascalsTriangleStore} from '@/src/components/store'
 
 const pickTriangle = (transformation: Transformation) => {
   switch (transformation) {
   case Transformation.None:
     return <TriangleDefault/>
-  case Transformation.Power_2:
+  case Transformation.Power2:
     return <TrianglePower2/>
-  case Transformation.Sierpinski_Triangle:
+  case Transformation.SierpinskiTriangle:
     return <SierpinskiTriangle/>
   case Transformation.FibonacciSequence:
     return <TriangleFibonacciSequence/>
+  case Transformation.HockeyStick:
+    return <TriangleHockeyStick/>
   }
 }
 
