@@ -2,6 +2,7 @@ import {FC} from 'react'
 import styled from 'styled-components'
 import {usePascalsTriangleStore} from '@/src/components/store'
 import {Row, Number} from './styles'
+import {CssColors} from '@/src/components/constants'
 
 const sum = (numbers: number[]) => numbers.reduce((p, c) => p + c, 0)
 
@@ -27,7 +28,7 @@ export const TrianglePower2: FC = () => {
 const Power2 = styled(Number)`
   position: absolute;
   right: 20px;
-  background: var(--highlight-3);
+  background: var(${CssColors.Highlight1});
   width: auto;
   padding: 5px 10px;
 `

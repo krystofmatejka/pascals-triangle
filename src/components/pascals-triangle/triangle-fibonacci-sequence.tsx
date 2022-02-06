@@ -4,14 +4,15 @@ import {usePascalsTriangleStore} from '@/src/components/store'
 import {Row, Number} from './styles'
 import {calculateFibonacciNumberByIndexes, findIndexesForFibonacci} from '@/src/components/lib/fibonacci'
 import {numOrNull} from '@/src/components/lib/types'
+import {CssColors} from '@/src/components/constants'
 
 const pickHighlight = (rowIndex: number, numberIndex: number, highlightedIndex: numOrNull) => {
   if (highlightedIndex[rowIndex]=== numberIndex) {
-    return '--highlight-3'
+    return CssColors.Highlight2
   }
 
   if (rowIndex === highlightedIndex.length - 1) {
-    return '--highlight-2'
+    return CssColors.Highlight1
   }
 
   return undefined
@@ -41,6 +42,6 @@ const Fibonacci = styled(Number)`
   position: absolute;
   right: 20px;
   top: 0;
-  background: var(--highlight-3);
+  background: var(${CssColors.Highlight1});
   padding: 5px 10px;
 `

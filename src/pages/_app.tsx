@@ -1,5 +1,6 @@
 import React from 'react'
 import {createGlobalStyle} from 'styled-components'
+import {CssColors} from '@/src/components/constants'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -10,19 +11,20 @@ const GlobalStyle = createGlobalStyle`
 
   :root {
     --number-width: 40px;
-    --highlight-1: #e0e0e0;
-    --highlight-2: #5afda8;
-    --highlight-3: #52e196;
+    ${CssColors.Dark}: #1a1a1a;
+    ${CssColors.Light}: #e0e0e0;
+    ${CssColors.LightHighlighted}: #c7c7c7;
+    ${CssColors.Highlight1}: #5afda8;
+    ${CssColors.Highlight2}: #52e196;
+    ${CssColors.Highlight3}: #30b06d;
   }
 `
 
-const App = ({Component, pageProps}) => {
-  return (
-    <>
-      <GlobalStyle/>
-      <Component {...pageProps} />
-    </>
-  )
-}
+const App = ({Component, pageProps}) => (
+  <>
+    <GlobalStyle/>
+    <Component {...pageProps} />
+  </>
+)
 
 export default App
