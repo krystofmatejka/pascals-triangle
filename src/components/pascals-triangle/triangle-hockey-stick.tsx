@@ -2,7 +2,7 @@ import {FC, useState} from 'react'
 import styled from 'styled-components'
 import {usePascalsTriangleStore} from '@/src/store'
 import {Row, Number} from './styles'
-import {hockeyStick} from '@/src/components/lib/hockey-stick'
+import {hockeyStick} from '@/src/lib'
 import {CssColors} from '@/src/constants'
 import type {NumberOrNull} from '@/src/types'
 

@@ -1,7 +1,7 @@
 import create from 'zustand'
 import {Transformation} from '@/src/constants'
-import {Triangle} from '@/src/components/lib'
-import {pascalsTriangle} from '@/src/components/lib'
+import {pascalsTriangle} from '@/src/lib'
+import type {Triangle} from '@/src/types'
 
 const INITIAL_NUMBER_OF_FLOORS = 6
 

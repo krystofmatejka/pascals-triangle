@@ -1,6 +1,6 @@
 import {useEffect} from 'react'
 import {Transformation} from '@/src/constants'
-import {calculateWidth} from '@/src/components/lib'
+import {calculateWidth} from '@/src/lib'
 import type {Triangle} from '@/src/types'
 
 type UseRecalculateNumberWidthProps = {

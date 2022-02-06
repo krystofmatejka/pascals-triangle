@@ -1,7 +1,7 @@
 import {FC, useState} from 'react'
 import styled from 'styled-components'
 import {usePascalsTriangleStore} from '@/src/store'
-import {calculateFibonacciNumberByIndexes, findIndexesForFibonacci} from '@/src/components/lib'
+import {calculateFibonacciNumberByIndexes, findIndexesForFibonacci} from '@/src/lib'
 import {CssColors} from '@/src/constants'
 import {Row, Number} from './styles'
 import type {NumberOrNull} from '@/src/types'

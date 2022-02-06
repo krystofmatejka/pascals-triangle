@@ -2,7 +2,7 @@ import {FC} from 'react'
 import {FloorSelector} from '../floor-selector'
 import {usePascalsTriangleStore} from '@/src/store'
 import {Menu} from '@/src/components/menu'
-import {pascalsTriangle} from '@/src/components/lib'
+import {pascalsTriangle} from '@/src/lib'
 import {useRecalculateNumberWidth} from '@/src/hooks'
 import {PascalsTriangle} from '@/src/components/pascals-triangle'
 
