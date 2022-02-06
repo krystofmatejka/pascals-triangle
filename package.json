@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": ">=16.13.2",
-    "npm": ">=8.1.2"
-  },
   "scripts": {
     "dev": "next",
     "build": "next build",
