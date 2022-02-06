@@ -12,7 +12,7 @@ export const Number = styled.div<{highlight?: CssColors}>`
   margin: 5px;
   width: var(--number-width);
   text-align: center;
-  transition: width ease 0.3s;
+  transition: width,background-color ease 0.3s;
 
   border-radius: 5px;
   background: var(${p => p.highlight ?? CssColors.Light});

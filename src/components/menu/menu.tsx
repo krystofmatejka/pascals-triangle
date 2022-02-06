@@ -2,6 +2,7 @@ import {FC, useState} from 'react'
 import styled from 'styled-components'
 import {Transformation} from '@/src/constants'
 import {usePascalsTriangleStore} from '@/src/store'
+import {FloorSelector} from '@/src/components/floor-selector'
 
 const MenuItems = [
   {
@@ -32,7 +33,8 @@ export const Menu: FC = () => {
   const {transformation, setTransformation} = usePascalsTriangleStore()
 
   return (
-    <div>
+    <Container>
+      <FloorSelector/>
       <button onClick={() => setVisible((previous) => !previous)}>{visible ? 'Hide Menu': 'Show Menu'}</button>
       <MenuContainer visible={visible}>
         {MenuItems.map((item) => {
@@ -50,12 +52,19 @@ export const Menu: FC = () => {
           )
         })}
       </MenuContainer>
-    </div>
+    </Container>
   )
 }
 
+const Container = styled.div`
+  position: fixed;
+  z-index: 1;
+  padding-left: 20px;
+  overflow: hidden;
+`
+
 const MenuContainer = styled.ul<{visible: boolean}>`
-  position: absolute;
+  //position: absolute;
   z-index: 1;
   transform: ${p => p.visible ? 'translateX(0)' : 'translateX(-100%)'};
   transition: transform ease 0.3s;

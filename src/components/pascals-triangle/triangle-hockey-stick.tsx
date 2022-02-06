@@ -48,8 +48,7 @@ export const TriangleHockeyStick: FC = () => {
 
 const StyledNumber = styled(Number)`
   cursor: pointer;
-  transition: background-color ease 0.3s;
-  
+
   &:hover {
     background: var(${CssColors.LightHighlighted});
   }

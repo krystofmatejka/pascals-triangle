@@ -34,5 +34,5 @@ export const PascalsTriangle: FC = () => {
 }
 
 const Container = styled.div`
-  position: relative;
+  padding: 20px;
 `
