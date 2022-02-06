@@ -1,6 +1,6 @@
 import {FC} from 'react'
 import {FloorSelector} from '../floor-selector'
-import {usePascalsTriangleStore} from '@/src/components/store'
+import {usePascalsTriangleStore} from '@/src/store'
 import {Menu} from '@/src/components/menu'
 import {pascalsTriangle} from '@/src/components/lib'
 import {useRecalculateNumberWidth} from '@/src/components/hooks'

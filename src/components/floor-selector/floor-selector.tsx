@@ -1,6 +1,6 @@
 import {FC} from 'react'
 import styled from 'styled-components'
-import {usePascalsTriangleStore} from '@/src/components/store'
+import {usePascalsTriangleStore} from '@/src/store'
 
 export const FloorSelector: FC = () => {
   const {

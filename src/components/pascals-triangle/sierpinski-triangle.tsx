@@ -1,5 +1,5 @@
 import {FC} from 'react'
-import {usePascalsTriangleStore} from '@/src/components/store'
+import {usePascalsTriangleStore} from '@/src/store'
 import {Row, Number} from './styles'
 import {CssColors} from '@/src/constants'
 

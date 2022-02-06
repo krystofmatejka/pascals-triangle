@@ -6,7 +6,7 @@ import {TrianglePower2} from './triangle-power-2'
 import {SierpinskiTriangle} from './sierpinski-triangle'
 import {TriangleFibonacciSequence} from './triangle-fibonacci-sequence'
 import {TriangleHockeyStick} from './triangle-hockey-stick'
-import {usePascalsTriangleStore} from '@/src/components/store'
+import {usePascalsTriangleStore} from '@/src/store'
 
 const pickTriangle = (transformation: Transformation) => {
   switch (transformation) {

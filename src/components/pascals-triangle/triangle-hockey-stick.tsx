@@ -1,6 +1,6 @@
 import {FC, useState} from 'react'
 import styled from 'styled-components'
-import {usePascalsTriangleStore} from '@/src/components/store'
+import {usePascalsTriangleStore} from '@/src/store'
 import {Row, Number} from './styles'
 import {hockeyStick} from '@/src/components/lib/hockey-stick'
 import {numOrNull} from '@/src/components/lib/types'
