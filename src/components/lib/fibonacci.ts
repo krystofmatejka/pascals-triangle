@@ -1,8 +1,7 @@
-import {Triangle} from './types'
-import {numOrNull} from './types'
+import type {Triangle, NumberOrNull} from '@/src/types'
 
-export const findIndexesForFibonacci = (rowIndex: number): numOrNull => {
-  const indexes: numOrNull = new Array(rowIndex + 1).fill(null)
+export const findIndexesForFibonacci = (rowIndex: number): NumberOrNull => {
+  const indexes: NumberOrNull = new Array(rowIndex + 1).fill(null)
   indexes[rowIndex] = 0
 
   let lastIndex = 0
@@ -20,7 +19,7 @@ export const findIndexesForFibonacci = (rowIndex: number): numOrNull => {
   return indexes
 }
 
-export const calculateFibonacciNumberByIndexes = (indexes: numOrNull, triangle:Triangle) => {
+export const calculateFibonacciNumberByIndexes = (indexes: NumberOrNull, triangle:Triangle): number => {
   let fibonacci = 0
   let lastIndex = indexes[indexes.length - 1]
   let index = indexes.length - 1

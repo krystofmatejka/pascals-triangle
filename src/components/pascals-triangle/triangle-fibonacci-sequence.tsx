@@ -1,12 +1,12 @@
 import {FC, useState} from 'react'
 import styled from 'styled-components'
 import {usePascalsTriangleStore} from '@/src/store'
-import {Row, Number} from './styles'
-import {calculateFibonacciNumberByIndexes, findIndexesForFibonacci} from '@/src/components/lib/fibonacci'
-import {numOrNull} from '@/src/components/lib/types'
+import {calculateFibonacciNumberByIndexes, findIndexesForFibonacci} from '@/src/components/lib'
 import {CssColors} from '@/src/constants'
+import {Row, Number} from './styles'
+import type {NumberOrNull} from '@/src/types'
 
-const pickHighlight = (rowIndex: number, numberIndex: number, highlightedIndex: numOrNull) => {
+const pickHighlight = (rowIndex: number, numberIndex: number, highlightedIndex: NumberOrNull) => {
   if (highlightedIndex[rowIndex]=== numberIndex) {
     return CssColors.Highlight2
   }
@@ -20,7 +20,7 @@ const pickHighlight = (rowIndex: number, numberIndex: number, highlightedIndex: 
 
 export const TriangleFibonacciSequence: FC = () => {
   const {triangle} = usePascalsTriangleStore()
-  const [highlightedIndex, setHighlightedIndex] = useState<numOrNull>([])
+  const [highlightedIndex, setHighlightedIndex] = useState<NumberOrNull>([])
 
   return (
     <>

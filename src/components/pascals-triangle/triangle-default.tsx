@@ -1,9 +1,8 @@
 import {FC, useState} from 'react'
 import {usePascalsTriangleStore} from '@/src/store'
-import {Row, Number} from './styles'
 import {CssColors} from '@/src/constants'
-
-type Index = [number, number]
+import {Row, Number} from './styles'
+import type {Index} from '@/src/types'
 
 const pickHighlight = (currentIndex: Index, highlightedIndex: Index) => {
   if (

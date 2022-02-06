@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import {usePascalsTriangleStore} from '@/src/store'
 import {Row, Number} from './styles'
 import {hockeyStick} from '@/src/components/lib/hockey-stick'
-import {numOrNull} from '@/src/components/lib/types'
 import {CssColors} from '@/src/constants'
+import type {NumberOrNull} from '@/src/types'
 
-const pickHighlight = (rowIndex: number, numberIndex: number, highlightedIndex: numOrNull) => {
+const pickHighlight = (rowIndex: number, numberIndex: number, highlightedIndex: NumberOrNull) => {
   if (highlightedIndex[rowIndex] === numberIndex) {
     return CssColors.Highlight1
   }
@@ -16,7 +16,7 @@ const pickHighlight = (rowIndex: number, numberIndex: number, highlightedIndex: 
 
 export const TriangleHockeyStick: FC = () => {
   const {triangle} = usePascalsTriangleStore()
-  const [highlightedIndex, setHighlightedIndex] = useState<numOrNull>([])
+  const [highlightedIndex, setHighlightedIndex] = useState<NumberOrNull>([])
 
   return (
     <>

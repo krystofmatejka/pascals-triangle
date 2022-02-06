@@ -7,8 +7,6 @@ export const Row = styled.div`
   justify-content: center;
 `
 
-//type Highlight = '--highlight-1' | '--highlight-2' | '--highlight-3'
-
 export const Number = styled.div<{highlight?: CssColors}>`
   padding: 5px 0;
   margin: 5px;
