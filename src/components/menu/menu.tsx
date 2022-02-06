@@ -35,7 +35,11 @@ export const Menu: FC = () => {
   return (
     <Container>
       <FloorSelector/>
-      <button onClick={() => setVisible((previous) => !previous)}>{visible ? 'Hide Menu': 'Show Menu'}</button>
+      <ToggleButton
+        onClick={() => setVisible((previous) => !previous)}
+      >
+        {visible ? 'Hide Menu': 'Show Menu'}
+      </ToggleButton>
       <MenuContainer visible={visible}>
         {MenuItems.map((item) => {
           const isActive = transformation === item.transformation
@@ -63,12 +67,26 @@ const Container = styled.div`
   overflow: hidden;
 `
 
+const ToggleButton = styled.button`
+  cursor: pointer;
+  padding: 5px 15px;
+  border-radius: 5px;
+  border: 2px solid #a9a9a9;
+  font-size: 1rem;
+
+  &:hover {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+`
+
 const MenuContainer = styled.ul<{visible: boolean}>`
-  //position: absolute;
-  z-index: 1;
-  transform: ${p => p.visible ? 'translateX(0)' : 'translateX(-100%)'};
+  transform: ${p => p.visible ? 'translateX(0)' : 'translateX(calc(-100% - 20px))'};
   transition: transform ease 0.3s;
   background: #fff;
+
+  padding: 0;
+  margin: 20px 0;
+  list-style: none;
 `
 
 const Row = styled.li<{active?: boolean}>`
