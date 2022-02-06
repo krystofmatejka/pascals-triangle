@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {CssColors} from '@/src/components/constants'
+import {CssColors} from '@/src/constants'
 
 export const Row = styled.div`
   display: flex;

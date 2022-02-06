@@ -1,6 +1,6 @@
 import {FC, useState} from 'react'
 import styled from 'styled-components'
-import {Transformation} from '@/src/components/constants'
+import {Transformation} from '@/src/constants'
 import {usePascalsTriangleStore} from '@/src/components/store'
 
 const MenuItems = [

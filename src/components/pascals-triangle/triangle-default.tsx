@@ -1,7 +1,7 @@
 import {FC, useState} from 'react'
 import {usePascalsTriangleStore} from '@/src/components/store'
 import {Row, Number} from './styles'
-import {CssColors} from '@/src/components/constants'
+import {CssColors} from '@/src/constants'
 
 type Index = [number, number]
 

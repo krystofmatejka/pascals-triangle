@@ -1,5 +1,5 @@
 import create from 'zustand'
-import {Transformation} from '@/src/components/constants'
+import {Transformation} from '@/src/constants'
 import {Triangle} from '@/src/components/lib'
 import {pascalsTriangle} from '@/src/components/lib'
 

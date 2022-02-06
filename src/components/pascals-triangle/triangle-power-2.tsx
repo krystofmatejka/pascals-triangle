@@ -2,7 +2,7 @@ import {FC} from 'react'
 import styled from 'styled-components'
 import {usePascalsTriangleStore} from '@/src/components/store'
 import {Row, Number} from './styles'
-import {CssColors} from '@/src/components/constants'
+import {CssColors} from '@/src/constants'
 
 const sum = (numbers: number[]) => numbers.reduce((p, c) => p + c, 0)
 

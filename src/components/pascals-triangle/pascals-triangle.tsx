@@ -1,6 +1,6 @@
 import {FC} from 'react'
 import styled from 'styled-components'
-import {Transformation} from '@/src/components/constants'
+import {Transformation} from '@/src/constants'
 import {TriangleDefault} from './triangle-default'
 import {TrianglePower2} from './triangle-power-2'
 import {SierpinskiTriangle} from './sierpinski-triangle'

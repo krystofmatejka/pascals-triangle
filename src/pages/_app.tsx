@@ -1,6 +1,6 @@
 import React from 'react'
 import {createGlobalStyle} from 'styled-components'
-import {CssColors} from '@/src/components/constants'
+import {CssColors} from '@/src/constants'
 
 const GlobalStyle = createGlobalStyle`
   body {

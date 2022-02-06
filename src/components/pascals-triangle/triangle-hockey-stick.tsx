@@ -4,7 +4,7 @@ import {usePascalsTriangleStore} from '@/src/components/store'
 import {Row, Number} from './styles'
 import {hockeyStick} from '@/src/components/lib/hockey-stick'
 import {numOrNull} from '@/src/components/lib/types'
-import {CssColors} from '@/src/components/constants'
+import {CssColors} from '@/src/constants'
 
 const pickHighlight = (rowIndex: number, numberIndex: number, highlightedIndex: numOrNull) => {
   if (highlightedIndex[rowIndex] === numberIndex) {

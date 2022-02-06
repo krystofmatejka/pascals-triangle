@@ -1,7 +1,7 @@
 import {FC} from 'react'
 import {usePascalsTriangleStore} from '@/src/components/store'
 import {Row, Number} from './styles'
-import {CssColors} from '@/src/components/constants'
+import {CssColors} from '@/src/constants'
 
 const isOdd = (number: number) => (number % 2)
 
