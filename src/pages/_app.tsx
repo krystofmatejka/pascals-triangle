@@ -1,5 +1,6 @@
 import React from 'react'
 import {createGlobalStyle} from 'styled-components'
+import Head from 'next/head'
 import {CssColors} from '@/src/constants'
 
 const GlobalStyle = createGlobalStyle`
@@ -7,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     background: #fff;
+    font-family: 'Open Sans', sans-serif;
   }
 
   :root {
@@ -22,6 +24,10 @@ const GlobalStyle = createGlobalStyle`
 
 const App = ({Component, pageProps}) => (
   <>
+    <Head>
+      <title>Pascal's Triangle</title>
+      <link href='/opensans-regular.ttf' rel='stylesheet'/>
+    </Head>
     <GlobalStyle/>
     <Component {...pageProps} />
   </>

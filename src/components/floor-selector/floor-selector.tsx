@@ -11,7 +11,7 @@ export const FloorSelector: FC = () => {
   return (
     <ContainerInput>
       <Label htmlFor='floor'>
-        Number of floors: {numberOfFloors}
+        Size: {numberOfFloors}
       </Label>
       <StyledInput
         id='floor'
@@ -32,7 +32,6 @@ const ContainerInput = styled.div`
 
 const Label = styled.label`
   display: block;
-  width: 100%;
   margin-bottom: 5px;
   font-size: 0.8rem;
 `
@@ -40,5 +39,5 @@ const Label = styled.label`
 const StyledInput = styled.input`
   padding: 0;
   margin: 0;
-  width: 200px;
+  width: 100%;
 `

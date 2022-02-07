@@ -34,6 +34,7 @@ export const Menu: FC = () => {
 
   return (
     <Container>
+      <Heading>Pascal's Triangle</Heading>
       <FloorSelector/>
       <ToggleButton
         onClick={() => setVisible((previous) => !previous)}
@@ -65,6 +66,10 @@ const Container = styled.div`
   z-index: 1;
   padding-left: 20px;
   overflow: hidden;
+`
+
+const Heading = styled.h1`
+  font-weight: normal;
 `
 
 const ToggleButton = styled.button`
