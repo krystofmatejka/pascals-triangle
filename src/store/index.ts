@@ -1,1 +1,1 @@
-export {usePascalsTriangleStore, useIsHighlighted, useIsHighlighted2} from './pascals-triangle-store'
+export {usePascalsTriangleStore, useIsHighlighted} from './pascals-triangle-store'
