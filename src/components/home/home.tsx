@@ -7,8 +7,10 @@ import {useRecalculateNumberWidth} from '@/src/hooks'
 import {PascalsTriangle} from '@/src/components/pascals-triangle'
 
 export const Home: FC = () => {
-  const {numberOfFloors, transformation} = usePascalsTriangleStore()
-  const triangle = pascalsTriangle(numberOfFloors)
+  const numberOfFloors = usePascalsTriangleStore((state) => state.numberOfFloors)
+  const transformation = usePascalsTriangleStore((state) => state.transformation)
+  const triangle = usePascalsTriangleStore((state) => state.triangle)
+
 
   useRecalculateNumberWidth({triangle, transformation})
 

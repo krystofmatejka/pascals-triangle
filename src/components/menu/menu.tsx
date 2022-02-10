@@ -30,7 +30,8 @@ const MenuItems = [
 
 export const Menu: FC = () => {
   const [visible, setVisible] = useState(true)
-  const {transformation, setTransformation} = usePascalsTriangleStore()
+  const transformation = usePascalsTriangleStore((state) => state.transformation)
+  const setTransformation = usePascalsTriangleStore((state) => state.setTransformation)
 
   return (
     <Container>

@@ -1,5 +1,5 @@
-import {FC, useState} from 'react'
-import {usePascalsTriangleStore} from '@/src/store'
+import {FC, useState, useCallback} from 'react'
+import {usePascalsTriangleStore, useIsHighlighted, useIsHighlighted2} from '@/src/store'
 import {CssColors} from '@/src/constants'
 import {Row, Number} from './styles'
 import type {Index} from '@/src/types'
@@ -22,24 +22,61 @@ const pickHighlight = (currentIndex: Index, highlightedIndex: Index) => {
 }
 
 export const TriangleDefault: FC = () => {
-  const {triangle} = usePascalsTriangleStore()
-  const [highlightedIndex, setHighlightedIndex] = useState<Index>([-1, -1])
+  const triangle = usePascalsTriangleStore((state) => state.triangle)
+  const setHighlighted = usePascalsTriangleStore((state) => state.setHighlighted)
+  const setHighlighted2 = usePascalsTriangleStore((state) => state.setHighlighted2)
 
   return (
     <>
       {triangle.map((row, rowIndex) => (
         <Row key={rowIndex}>
           {row.map((number, numberIndex) => (
-            <Number
+            <Number2
               key={numberIndex}
-              highlight={pickHighlight([rowIndex, numberIndex], highlightedIndex)}
-              onMouseEnter={() => setHighlightedIndex(() => [rowIndex, numberIndex])}
+              rowIndex={rowIndex}
+              numberIndex={numberIndex}
+              onMouseEnter={() => {
+                const h2 = []
+                h2[rowIndex - 1] = [numberIndex - 1, numberIndex]
+                setHighlighted2(h2)
+                const h = []
+                h[rowIndex] = [numberIndex]
+                setHighlighted(h)
+              }}
             >
               {number}
-            </Number>
+            </Number2>
           ))}
         </Row>
       ))}
     </>
+  )
+}
+
+type NumberProps = {
+  rowIndex: number
+  numberIndex: number
+  onMouseEnter?: () => void
+}
+
+const Number2: FC<NumberProps> = ({rowIndex, numberIndex, onMouseEnter, children}) => {
+  const isHighlighted = useIsHighlighted(rowIndex, numberIndex)
+  const isHighlighted2 = useIsHighlighted2(rowIndex, numberIndex)
+
+  let h = undefined
+  if (isHighlighted) {
+    h = CssColors.Highlight1
+  }
+  if (isHighlighted2) {
+    h = CssColors.Highlight2
+  }
+
+  return (
+    <Number
+      highlight={h}
+      onMouseEnter={onMouseEnter}
+    >
+      {children}
+    </Number>
   )
 }

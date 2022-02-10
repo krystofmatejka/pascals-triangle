@@ -3,10 +3,8 @@ import styled from 'styled-components'
 import {usePascalsTriangleStore} from '@/src/store'
 
 export const FloorSelector: FC = () => {
-  const {
-    numberOfFloors,
-    setNumberOfFloors,
-  } = usePascalsTriangleStore()
+  const numberOfFloors = usePascalsTriangleStore((state) => state.numberOfFloors)
+  const setNumberOfFloors = usePascalsTriangleStore((state) => state.setNumberOfFloors)
 
   return (
     <ContainerInput>

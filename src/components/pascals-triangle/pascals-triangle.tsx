@@ -24,7 +24,7 @@ const pickTriangle = (transformation: Transformation) => {
 }
 
 export const PascalsTriangle: FC = () => {
-  const {transformation} = usePascalsTriangleStore()
+  const transformation = usePascalsTriangleStore((state) => state.transformation)
 
   return (
     <Container>
