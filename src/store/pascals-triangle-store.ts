@@ -1,4 +1,3 @@
-import {useCallback} from 'react'
 import create from 'zustand'
 import {CssColors, Transformation} from '@/src/constants'
 import {pascalsTriangle} from '@/src/lib'
@@ -20,9 +19,9 @@ export const usePascalsTriangleStore = create<PascalsTriangleStore>((set) => ({
   triangle: pascalsTriangle(INITIAL_NUMBER_OF_FLOORS),
   numberOfFloors: INITIAL_NUMBER_OF_FLOORS,
   transformation: Transformation.None,
-  setNumberOfFloors: (v: number) => set({numberOfFloors: v, triangle: pascalsTriangle(v)}),
-  setTransformation: (t: Transformation) => set({transformation: t}),
-  highlights: [[], [undefined, CssColors.Highlight1]],
+  setNumberOfFloors: (v: number) => set({numberOfFloors: v, triangle: pascalsTriangle(v), highlights: []}),
+  setTransformation: (t: Transformation) => set({transformation: t, highlights: []}),
+  highlights: [],
   setHighlights: (rows: [number, number[], CssColors][]) => {
     const highlights = []
     rows.forEach(([rowIndex, numbers, color]) => {
@@ -38,5 +37,5 @@ export const usePascalsTriangleStore = create<PascalsTriangleStore>((set) => ({
 export const useIsHighlighted = (rowIndex: number, numberIndex: number) => {
   const pickHighlight = (state) => (state.highlights[rowIndex] && state.highlights[rowIndex][numberIndex])
 
-  return usePascalsTriangleStore(useCallback(pickHighlight, [rowIndex, numberIndex]))
+  return usePascalsTriangleStore(pickHighlight)
 }

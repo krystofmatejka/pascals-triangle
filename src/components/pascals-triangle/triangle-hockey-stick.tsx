@@ -1,28 +1,14 @@
-import {FC, useState} from 'react'
+import {FC} from 'react'
 import styled from 'styled-components'
 import {usePascalsTriangleStore} from '@/src/store'
-import {Row, Number} from './styles'
 import {hockeyStick} from '@/src/lib'
 import {CssColors} from '@/src/constants'
-import type {NumberOrNull, Index} from '@/src/types'
-
-const pickHighlight = (rowIndex: number, numberIndex: number, highlightedIndex: NumberOrNull, clickedIndex: Index) => {
-  if (highlightedIndex.length && clickedIndex[0] === rowIndex && clickedIndex[1] === numberIndex) {
-    return CssColors.Highlight2
-  }
-
-  if (highlightedIndex[rowIndex] === numberIndex) {
-    return CssColors.Highlight1
-  }
-
-  return undefined
-}
-
+import {Row} from './styles'
+import {Number} from './number'
 
 export const TriangleHockeyStick: FC = () => {
-  const {triangle} = usePascalsTriangleStore()
-  const [highlightedIndex, setHighlightedIndex] = useState<NumberOrNull>([])
-  const [clickedIndex, setClickedIndex] = useState<Index>([-1, -1])
+  const triangle = usePascalsTriangleStore((state) => state.triangle)
+  const setHighlights = usePascalsTriangleStore((state) => state.setHighlights)
 
   return (
     <>
@@ -31,10 +17,18 @@ export const TriangleHockeyStick: FC = () => {
           {row.map((number, numberIndex) => (
             <StyledNumber
               key={numberIndex}
-              highlight={pickHighlight(rowIndex, numberIndex, highlightedIndex, clickedIndex)}
+              rowIndex={rowIndex}
+              numberIndex={numberIndex}
               onClick={(() => {
-                setClickedIndex([rowIndex, numberIndex])
-                setHighlightedIndex(hockeyStick(triangle, [rowIndex, numberIndex]))
+                const hs = hockeyStick(triangle, [rowIndex, numberIndex])
+                const highlights = []
+                hs.forEach((f, i) => {
+                  if (typeof f === 'number') {
+                    highlights.push([i, [f], CssColors.Highlight2])
+                  }
+                })
+                highlights.push([rowIndex, [numberIndex], CssColors.Highlight1])
+                setHighlights(highlights)
               })}
             >
               {number}
