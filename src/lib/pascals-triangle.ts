@@ -1,3 +1,4 @@
+import {flow} from 'fp-ts/function'
 import type {Triangle} from '@/src/types'
 
 export const pascalsTriangle = (n: number): Triangle => {
@@ -21,19 +22,18 @@ export const pascalsTriangle = (n: number): Triangle => {
   return triangle
 }
 
+export const numberOfDigitsOfBiggestNumber = (t: Triangle) => flow(
+  getBiggestNumberFromTriangle,
+  numberOfDigits
+)(t)
+
+const getBiggestNumberFromTriangle = (t: Triangle) => flow<[Triangle], number[], number>(
+  lastElementOfArray,
+  getMiddleElementOfArray,
+)(t)
+
 const lastElementOfArray = <T>(array: T[]) => array[array.length - 1]
 
-const getBiggestNumberFromTriangle = (triangle: Triangle) => {
-  const lastRow = lastElementOfArray(triangle)
-
-  return lastRow[Math.floor(lastRow.length / 2)]
-}
+const getMiddleElementOfArray = <T>(array: T[]) => array[Math.floor(array.length / 2)]
 
 const numberOfDigits = (n: number) => Math.max(Math.floor(Math.log10(Math.abs(n))), 0) + 1
-
-export const calculateWidth = (triangle: Triangle, padding: number) => {
-  const biggestNumber = getBiggestNumberFromTriangle(triangle)
-  const totalNumberOfDigits = numberOfDigits(biggestNumber)
-
-  return (totalNumberOfDigits + 2) * padding
-}

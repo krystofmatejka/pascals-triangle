@@ -24,7 +24,7 @@ export const Number = styled.div.attrs<NumberProps>((attrs) => ({
   margin: 5px;
   width: var(--number-width);
   text-align: center;
-  transition: width,background-color ease 0.3s;
+  transition: width ease 0.3s, background-color ease 0.3s;
 
   border-radius: 5px;
   background: var(${p => p.backgroundColor});

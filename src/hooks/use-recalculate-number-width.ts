@@ -1,6 +1,6 @@
 import {useEffect} from 'react'
 import {Transformation} from '@/src/constants'
-import {calculateWidth} from '@/src/lib'
+import {numberOfDigitsOfBiggestNumber} from '@/src/lib'
 import type {Triangle} from '@/src/types'
 
 type UseRecalculateNumberWidthProps = {
@@ -13,7 +13,8 @@ export const useRecalculateNumberWidth = ({triangle, transformation}: UseRecalcu
     if (transformation === Transformation.SierpinskiTriangle) {
       document.documentElement.style.setProperty('--number-width', '30px')
     } else {
-      const width = calculateWidth(triangle, 10)
+      const numberOfDigits = numberOfDigitsOfBiggestNumber(triangle)
+      const width = (numberOfDigits + 2) * 10
 
       document.documentElement.style.setProperty('--number-width', `${width}px`)
     }
