@@ -13,9 +13,8 @@ const useFibonacciStore = create<{fibonacci: number, setFibonacci: (n: number) =
 }))
 
 export const highlightAndSum = (endRowIndex: number, triangle: Triangle): [Highlights, number] => {
-  const highlights: Highlights = []
-
   let fibonacci = 0
+  const highlights: Highlights = []
 
   for (let rowIndex = endRowIndex - Math.floor(endRowIndex / 2); rowIndex <= endRowIndex; rowIndex++) {
     const numberIndex = endRowIndex - rowIndex
@@ -49,13 +48,7 @@ export const TriangleFibonacciSequence: FC = () => {
 const Fibonacci: FC = () => {
   const fibonacci = useFibonacciStore((state) => state.fibonacci)
 
-  if (!fibonacci) {
-    return  null
-  }
-
-  return (
-    <StyledFibonacci>{fibonacci}</StyledFibonacci>
-  )
+  return <StyledFibonacci>{fibonacci}</StyledFibonacci>
 }
 
 const StyledFibonacci = styled(HighlightedNumber)`
