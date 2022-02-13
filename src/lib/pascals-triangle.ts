@@ -22,15 +22,15 @@ export const pascalsTriangle = (n: number): Triangle => {
   return triangle
 }
 
-export const numberOfDigitsOfBiggestNumber = (t: Triangle) => flow(
+export const numberOfDigitsOfBiggestNumber = (triangle: Triangle) => flow(
   getBiggestNumberFromTriangle,
   numberOfDigits
-)(t)
+)(triangle)
 
-const getBiggestNumberFromTriangle = (t: Triangle) => flow<[Triangle], number[], number>(
+const getBiggestNumberFromTriangle = (triangle: Triangle) => flow<[Triangle], number[], number>(
   lastElementOfArray,
   getMiddleElementOfArray,
-)(t)
+)(triangle)
 
 const lastElementOfArray = <T>(array: T[]) => array[array.length - 1]
 

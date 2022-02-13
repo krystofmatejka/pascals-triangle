@@ -13,7 +13,36 @@ const useFibStore = create<{fib: number, setFib: (n: number) => void}>((set) => 
   setFib: (n: number) => set({fib: n}),
 }))
 
-const findIndexesForFibonacci = (rowIndex: number): NumberOrNull => {
+export const highlightAndSum = (rowIndex: number, rowLength: number, triangle: Triangle) => {
+  const highlights = []
+  const indexes: NumberOrNull = new Array(rowIndex + 1).fill(null)
+  indexes[rowIndex] = 0
+
+  let fibonacci = 1
+  let lastIndex = 0
+  let currentIndex = 0
+  let index = rowIndex - 1
+
+  while (currentIndex < index) {
+    lastIndex = indexes[index + 1] ?? -1
+    currentIndex = lastIndex + 1
+    indexes[index] = currentIndex
+    highlights.push([index, [currentIndex], CssColors.Highlight1])
+    fibonacci += triangle[index][currentIndex]
+    index--
+  }
+
+  highlights.reverse()
+
+  highlights.push([rowIndex, [0], CssColors.Highlight1])
+
+  return {
+    fibonacci,
+    highlights,
+  }
+}
+
+/*const findIndexesForFibonacci = (rowIndex: number): NumberOrNull => {
   const indexes: NumberOrNull = new Array(rowIndex + 1).fill(null)
   indexes[rowIndex] = 0
 
@@ -30,29 +59,31 @@ const findIndexesForFibonacci = (rowIndex: number): NumberOrNull => {
   }
 
   return indexes
-}
+}*/
 
-export const reduceRightFibonacci = <T,>(indexes: NumberOrNull, onNumber: (acc: T, index: number, number: number) => T, acc: T) => {
+/*const reduceRightFibonacci = <T,>(indexes: NumberOrNull, onNumber: (acc: T, index: number, number: number) => T, acc: T) => {
   let lastIndex = indexes[indexes.length - 1]
   let index = indexes.length - 1
 
-  while (lastIndex !== null) {
-    lastIndex = indexes[index]
-
-    if (typeof lastIndex !== 'number') {
-      return acc
-    }
-
+  while (typeof lastIndex === 'number') {
     const result = onNumber(acc, index, lastIndex)
     if (typeof result !== undefined) {
       acc = result
     }
 
     index--
+    lastIndex = indexes[index]
   }
+
+  return acc
 }
 
-const highlightFibonacciSequence = (indexes: NumberOrNull): Highlights => reduceRightFibonacci<Highlights>(
+const highlightNumbers = (fib: NumberOrNull, index: number, length: number): Highlights => flow(
+  highlightUpperRows,
+  highlightLastRow(index, length),
+)(fib)
+
+const highlightUpperRows = (indexes: NumberOrNull): Highlights => reduceRightFibonacci<Highlights>(
   indexes,
   (highlights, index, number) => highlights.concat([[index, [number], CssColors.Highlight1]]),
   [],
@@ -64,16 +95,11 @@ const highlightLastRow = (index: number, length: number) => (highlights: Highlig
   return highlights.concat([[index, highlightedRow, CssColors.Highlight2]])
 }
 
-const highlightRow = (fib: NumberOrNull, index: number, length: number): Highlights => flow(
-  highlightFibonacciSequence,
-  highlightLastRow(index, length),
-)(fib)
-
-const calculateFibonacciNumberByIndexes = (indexes: NumberOrNull, triangle:Triangle): number => reduceRightFibonacci(
+export const calculateFibonacciNumberByIndexes = (indexes: NumberOrNull, triangle:Triangle): number => reduceRightFibonacci(
   indexes,
   (fibonacci, index, number) => fibonacci + triangle[index][number],
   0,
-)
+)*/
 
 export const TriangleFibonacciSequence: FC = () => {
   const setHighlights = usePascalsTriangleStore((state) => state.setHighlights)
@@ -83,10 +109,10 @@ export const TriangleFibonacciSequence: FC = () => {
     <>
       <PascalsTriangleSkeleton
         rowOnMouseEnter={(row, rowIndex, triangle) => {
-          const fib = findIndexesForFibonacci(rowIndex)
+          const {highlights, fibonacci} = highlightAndSum(rowIndex, row.length, triangle)
 
-          setHighlights(highlightRow(fib, rowIndex, row.length))
-          setFib(calculateFibonacciNumberByIndexes(fib, triangle))
+          setHighlights(highlights)
+          setFib(fibonacci)
         }}
       />
       <Fibonacci/>
