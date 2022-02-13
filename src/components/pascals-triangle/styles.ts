@@ -38,3 +38,11 @@ export const Number = styled.div.attrs<NumberProps>((attrs) => ({
     background: ${(p => p.backgroundHoverColor)};
   }
 `
+
+export const HighlightedNumber = styled(Number)`
+  position: absolute;
+  right: 20px;
+  background: var(${CssColors.Highlight1});
+  width: auto;
+  padding: 5px 10px;
+`

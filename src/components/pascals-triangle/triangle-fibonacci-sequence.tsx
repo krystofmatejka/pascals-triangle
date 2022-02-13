@@ -4,7 +4,7 @@ import create from 'zustand'
 import {usePascalsTriangleStore} from '@/src/store'
 import {calculateFibonacciNumberByIndexes, findIndexesForFibonacci} from '@/src/lib'
 import {CssColors} from '@/src/constants'
-import {Number as StyledNumber} from './styles'
+import {HighlightedNumber} from './styles'
 import {PascalsTriangleSkeleton} from './pascals-triangle-skeleton'
 
 const useFibStore = create<{fib: number, setFib: (n: number) => void}>((set) => ({
@@ -29,27 +29,27 @@ export const TriangleFibonacciSequence: FC = () => {
 
   const setFib = useFibStore((state) => state.setFib)
 
-  return <PascalsTriangleSkeleton
-    rowOnMouseEnter={(row, rowIndex, triangle) => {
-      const fib = findIndexesForFibonacci(rowIndex)
-      setFib(calculateFibonacciNumberByIndexes(fib, triangle))
-      const highlights = []
-      fib.forEach((f, i) => {
-        if (typeof f === 'number') {
-          highlights.push([i, [f], CssColors.Highlight1])
-        }
-      })
-      highlights.push([rowIndex, new Array(row.length).fill(0).map((_, i) => i), CssColors.Highlight2])
-      setHighlights(highlights)
-    }}
-    renderAfterTriangle={() => <Fibonacci/>}
-  />
+  return (
+    <>
+      <PascalsTriangleSkeleton
+        rowOnMouseEnter={(row, rowIndex, triangle) => {
+          const fib = findIndexesForFibonacci(rowIndex)
+          setFib(calculateFibonacciNumberByIndexes(fib, triangle))
+          const highlights = []
+          fib.forEach((f, i) => {
+            if (typeof f === 'number') {
+              highlights.push([i, [f], CssColors.Highlight1])
+            }
+          })
+          highlights.push([rowIndex, new Array(row.length).fill(0).map((_, i) => i), CssColors.Highlight2])
+          setHighlights(highlights)
+        }}
+      />
+      <Fibonacci/>
+    </>
+  )
 }
 
-const StyledFibonacci = styled(StyledNumber)`
-  position: absolute;
-  right: 20px;
+const StyledFibonacci = styled(HighlightedNumber)`
   top: 0;
-  background: var(${CssColors.Highlight1});
-  padding: 5px 10px;
 `

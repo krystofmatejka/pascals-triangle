@@ -9,7 +9,6 @@ type PascalsTriangleSkeletonProps = {
   numberProps?: (index: Index, number: number) => NumberProps
   renderNumber?: (number: number) => ReactNode,
   renderAfterRow?: (row: number[], rowIndex: number) => ReactNode
-  renderAfterTriangle?: () => ReactNode
 }
 
 export const PascalsTriangleSkeleton: FC<PascalsTriangleSkeletonProps> = ({
@@ -17,7 +16,6 @@ export const PascalsTriangleSkeleton: FC<PascalsTriangleSkeletonProps> = ({
   numberProps,
   renderNumber,
   renderAfterRow,
-  renderAfterTriangle,
 }) => {
   const triangle = usePascalsTriangleStore((state) => state.triangle)
 
@@ -38,7 +36,6 @@ export const PascalsTriangleSkeleton: FC<PascalsTriangleSkeletonProps> = ({
           {renderAfterRow && renderAfterRow(row, rowIndex)}
         </Row>
       ))}
-      {renderAfterTriangle && renderAfterTriangle()}
     </>
   )
 }

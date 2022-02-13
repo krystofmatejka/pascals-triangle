@@ -25,7 +25,7 @@ const bigTriangle = [
   [1,6,15,20,15,6,1],
 ]
 
-describe.only(numberOfDigitsOfBiggestNumber.name, () => {
+describe(numberOfDigitsOfBiggestNumber.name, () => {
   test('small', () => expect(numberOfDigitsOfBiggestNumber(smallTriangle)).toBe(1))
   test('medium', () => expect(numberOfDigitsOfBiggestNumber(mediumTriangle)).toBe(2))
   test('big', () => expect(numberOfDigitsOfBiggestNumber(bigTriangle)).toBe(2))
