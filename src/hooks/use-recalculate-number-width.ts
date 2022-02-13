@@ -10,13 +10,10 @@ type UseRecalculateNumberWidthProps = {
 
 export const useRecalculateNumberWidth = ({triangle, transformation}: UseRecalculateNumberWidthProps) => {
   useEffect(() => {
-    if (transformation === Transformation.SierpinskiTriangle) {
-      document.documentElement.style.setProperty('--number-width', '30px')
-    } else {
-      const numberOfDigits = numberOfDigitsOfBiggestNumber(triangle)
-      const width = numberOfDigits * 10
+    const width = (transformation === Transformation.SierpinskiTriangle)
+      ? 10
+      : numberOfDigitsOfBiggestNumber(triangle) * 10
 
-      document.documentElement.style.setProperty('--number-width', `${width}px`)
-    }
+    document.documentElement.style.setProperty('--number-width', `${width}px`)
   }, [triangle, transformation])
 }
