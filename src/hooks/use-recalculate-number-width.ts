@@ -11,7 +11,7 @@ type UseRecalculateNumberWidthProps = {
 export const useRecalculateNumberWidth = ({triangle, transformation}: UseRecalculateNumberWidthProps) => {
   useEffect(() => {
     const width = (transformation === Transformation.SierpinskiTriangle)
-      ? 10
+      ? 20
       : numberOfDigitsOfBiggestNumber(triangle) * 10
 
     document.documentElement.style.setProperty('--number-width', `${width}px`)

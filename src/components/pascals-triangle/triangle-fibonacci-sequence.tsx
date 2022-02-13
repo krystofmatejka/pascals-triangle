@@ -52,5 +52,5 @@ const Fibonacci: FC = () => {
 }
 
 const StyledFibonacci = styled(HighlightedNumber)`
-  top: 0;
+  top: 20px;
 `
