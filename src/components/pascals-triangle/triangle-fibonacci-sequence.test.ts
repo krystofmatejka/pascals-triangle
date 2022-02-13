@@ -14,7 +14,17 @@ const triangle = [
 
 describe.only(highlightAndSum.name, () => {
   test('highlightAndSum', () => {
-    expect(highlightAndSum(5, 6, triangle)).toEqual({
+    expect(highlightAndSum(2, triangle)).toEqual({
+      fibonacci: 2,
+      highlights: [
+        [1, [1], CssColors.Highlight1],
+        [2, [0], CssColors.Highlight1],
+      ],
+    })
+  })
+
+  test('highlightAndSum', () => {
+    expect(highlightAndSum(5, triangle)).toEqual({
       fibonacci: 8,
       highlights: [
         [3, [2], CssColors.Highlight1],

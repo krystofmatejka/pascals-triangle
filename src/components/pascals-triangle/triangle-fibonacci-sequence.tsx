@@ -1,40 +1,33 @@
 import {FC} from 'react'
 import styled from 'styled-components'
 import create from 'zustand'
-import {flow} from 'fp-ts/function'
 import {usePascalsTriangleStore} from '@/src/store'
 import {CssColors} from '@/src/constants'
 import {HighlightedNumber} from './styles'
 import {PascalsTriangleSkeleton} from './pascals-triangle-skeleton'
-import {Highlights, NumberOrNull, Triangle} from '@/src/types'
+import {Triangle} from '@/src/types'
 
 const useFibStore = create<{fib: number, setFib: (n: number) => void}>((set) => ({
   fib: 0,
   setFib: (n: number) => set({fib: n}),
 }))
 
-export const highlightAndSum = (rowIndex: number, rowLength: number, triangle: Triangle) => {
+export const highlightAndSum = (rowIndex: number, triangle: Triangle) => {
   const highlights = []
-  const indexes: NumberOrNull = new Array(rowIndex + 1).fill(null)
-  indexes[rowIndex] = 0
 
-  let fibonacci = 1
-  let lastIndex = 0
+  let fibonacci = 0
   let currentIndex = 0
-  let index = rowIndex - 1
+  let index = rowIndex
 
-  while (currentIndex < index) {
-    lastIndex = indexes[index + 1] ?? -1
-    currentIndex = lastIndex + 1
-    indexes[index] = currentIndex
+  while (currentIndex <= index) {
     highlights.push([index, [currentIndex], CssColors.Highlight1])
     fibonacci += triangle[index][currentIndex]
+
+    currentIndex++
     index--
   }
 
   highlights.reverse()
-
-  highlights.push([rowIndex, [0], CssColors.Highlight1])
 
   return {
     fibonacci,
@@ -109,7 +102,7 @@ export const TriangleFibonacciSequence: FC = () => {
     <>
       <PascalsTriangleSkeleton
         rowOnMouseEnter={(row, rowIndex, triangle) => {
-          const {highlights, fibonacci} = highlightAndSum(rowIndex, row.length, triangle)
+          const {highlights, fibonacci} = highlightAndSum(rowIndex, triangle)
 
           setHighlights(highlights)
           setFib(fibonacci)
