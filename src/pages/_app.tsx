@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   :root {
-    --number-width: 40px;
+    --number-width: 20px;
     ${CssColors.Dark}: #1a1a1a;
     ${CssColors.Light}: #e0e0e0;
     ${CssColors.LightHighlighted}: #c7c7c7;
