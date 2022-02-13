@@ -14,7 +14,7 @@ export const useRecalculateNumberWidth = ({triangle, transformation}: UseRecalcu
       document.documentElement.style.setProperty('--number-width', '30px')
     } else {
       const numberOfDigits = numberOfDigitsOfBiggestNumber(triangle)
-      const width = (numberOfDigits + 2) * 10
+      const width = numberOfDigits * 10
 
       document.documentElement.style.setProperty('--number-width', `${width}px`)
     }

@@ -20,7 +20,7 @@ export const Number = styled.div.attrs<NumberProps>((attrs) => ({
   backgroundHoverColor: attrs.clickable ? `var(${CssColors.LightHighlighted})` : 'default',
   cursor: attrs.clickable ? 'pointer' : 'default',
 }))<NumberProps>`
-  padding: 5px 0;
+  padding: 5px 10px;
   margin: 5px;
   width: var(--number-width);
   text-align: center;
