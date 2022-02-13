@@ -4,8 +4,8 @@ import create from 'zustand'
 import {usePascalsTriangleStore} from '@/src/store'
 import {calculateFibonacciNumberByIndexes, findIndexesForFibonacci} from '@/src/lib'
 import {CssColors} from '@/src/constants'
-import {Row, Number as StyledNumber} from './styles'
-import {Number} from './number'
+import {Number as StyledNumber} from './styles'
+import {PascalsTriangleSkeleton} from './pascals-triangle-skeleton'
 
 const useFibStore = create<{fib: number, setFib: (n: number) => void}>((set) => ({
   fib: 0,
@@ -25,40 +25,25 @@ const Fibonacci: FC = () => {
 }
 
 export const TriangleFibonacciSequence: FC = () => {
-  const triangle = usePascalsTriangleStore((state) => state.triangle)
   const setHighlights = usePascalsTriangleStore((state) => state.setHighlights)
 
   const setFib = useFibStore((state) => state.setFib)
 
-  return (
-    <>
-      {triangle.map((row, rowIndex) => (
-        <Row key={rowIndex} onMouseEnter={() => {
-          const fib = findIndexesForFibonacci(rowIndex)
-          setFib(calculateFibonacciNumberByIndexes(fib, triangle))
-          const highlights = []
-          fib.forEach((f, i) => {
-            if (typeof f === 'number') {
-              highlights.push([i, [f], CssColors.Highlight1])
-            }
-          })
-          highlights.push([rowIndex, new Array(row.length).fill(0).map((_, i) => i), CssColors.Highlight2])
-          setHighlights(highlights)
-        }}>
-          {row.map((number, numberIndex) => (
-            <Number
-              key={numberIndex}
-              rowIndex={rowIndex}
-              numberIndex={numberIndex}
-            >
-              {number}
-            </Number>
-          ))}
-        </Row>
-      ))}
-      <Fibonacci/>
-    </>
-  )
+  return <PascalsTriangleSkeleton
+    rowOnMouseEnter={(row, rowIndex, triangle) => {
+      const fib = findIndexesForFibonacci(rowIndex)
+      setFib(calculateFibonacciNumberByIndexes(fib, triangle))
+      const highlights = []
+      fib.forEach((f, i) => {
+        if (typeof f === 'number') {
+          highlights.push([i, [f], CssColors.Highlight1])
+        }
+      })
+      highlights.push([rowIndex, new Array(row.length).fill(0).map((_, i) => i), CssColors.Highlight2])
+      setHighlights(highlights)
+    }}
+    renderAfterTriangle={() => <Fibonacci/>}
+  />
 }
 
 const StyledFibonacci = styled(StyledNumber)`

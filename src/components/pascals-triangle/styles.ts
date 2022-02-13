@@ -7,7 +7,19 @@ export const Row = styled.div`
   justify-content: center;
 `
 
-export const Number = styled.div<{highlight?: CssColors}>`
+type NumberProps = {
+  highlight?: CssColors
+  clickable?: boolean
+  backgroundColor?: CssColors
+  backgroundHoverColor?: CssColors
+  cursor?: string
+}
+
+export const Number = styled.div.attrs<NumberProps>((attrs) => ({
+  backgroundColor: attrs.highlight ?? CssColors.Light,
+  backgroundHoverColor: attrs.clickable ? `var(${CssColors.LightHighlighted})` : 'default',
+  cursor: attrs.clickable ? 'pointer' : 'default',
+}))<NumberProps>`
   padding: 5px 0;
   margin: 5px;
   width: var(--number-width);
@@ -15,10 +27,14 @@ export const Number = styled.div<{highlight?: CssColors}>`
   transition: width,background-color ease 0.3s;
 
   border-radius: 5px;
-  background: var(${p => p.highlight ?? CssColors.Light});
+  background: var(${p => p.backgroundColor});
 
   font-family: monospace;
   font-size: 1rem;
 
-  cursor: default;
+  cursor: ${(p) => p.cursor};
+
+  &:hover {
+    background: ${(p => p.backgroundHoverColor)};
+  }
 `
