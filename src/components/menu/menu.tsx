@@ -1,4 +1,4 @@
-import {FC, useState} from 'react'
+import {FC} from 'react'
 import styled from 'styled-components'
 import {Transformation} from '@/src/constants'
 import {usePascalsTriangleStore} from '@/src/store'
@@ -6,30 +6,33 @@ import {FloorSelector} from '@/src/components/floor-selector'
 
 const MenuItems = [
   {
-    label: 'None',
+    label: 'Definition',
+    description: "Pascal's triangle is a triangular array constructed by summing adjacent elements in preceding rows.",
     transformation: Transformation.None,
   },
   {
     label: 'Power 2',
+    description: 'Number of row, starting from 0, can be used as a power of 2 and it is equal to sum of that row.',
     transformation: Transformation.Power2,
   },
   {
     label: 'The Sierpinski Triangle',
+    description: 'When we highlight even numbers by 0 and odd by 1 the Sierpinski Triangle pattern emerges.',
     transformation: Transformation.SierpinskiTriangle,
   },
   {
     label: 'Fibonacci Sequence',
-    description: 'select row to calculate fibonacci sequence',
+    description: 'From the start of each row diagonally upwards, a number from the Fibonacci Sequence can be found.',
     transformation: Transformation.FibonacciSequence,
   },
   {
     label: 'Hockey stick pattern',
+    description: 'The sum of the elements in a diagonal line starting with 1 is equal to the next element down diagonally in the opposite direction.',
     transformation: Transformation.HockeyStick,
   },
 ]
 
 export const Menu: FC = () => {
-  const [visible, setVisible] = useState(true)
   const transformation = usePascalsTriangleStore((state) => state.transformation)
   const setTransformation = usePascalsTriangleStore((state) => state.setTransformation)
 
@@ -37,12 +40,7 @@ export const Menu: FC = () => {
     <Container>
       <Heading>Pascal's Triangle</Heading>
       <FloorSelector/>
-      <ToggleButton
-        onClick={() => setVisible((previous) => !previous)}
-      >
-        {visible ? 'Hide Menu': 'Show Menu'}
-      </ToggleButton>
-      <MenuContainer visible={visible}>
+      <MenuContainer>
         {MenuItems.map((item) => {
           const isActive = transformation === item.transformation
 
@@ -63,33 +61,15 @@ export const Menu: FC = () => {
 }
 
 const Container = styled.div`
-  position: fixed;
-  z-index: 1;
   padding-left: 20px;
-  overflow: hidden;
+  width: 300px;
 `
 
 const Heading = styled.h1`
   font-weight: normal;
 `
 
-const ToggleButton = styled.button`
-  cursor: pointer;
-  padding: 5px 15px;
-  border-radius: 5px;
-  border: 2px solid #a9a9a9;
-  font-size: 1rem;
-
-  &:hover {
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  }
-`
-
-const MenuContainer = styled.ul<{visible: boolean}>`
-  transform: ${p => p.visible ? 'translateX(0)' : 'translateX(calc(-100% - 20px))'};
-  transition: transform ease 0.3s;
-  background: #fff;
-
+const MenuContainer = styled.ul`
   padding: 0;
   margin: 20px 0;
   list-style: none;

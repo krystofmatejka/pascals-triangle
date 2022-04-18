@@ -36,3 +36,6 @@ npm test
 ```bash
 npm run storybook
 ```
+
+## Sources
+- https://www.mathsisfun.com/pascals-triangle.html

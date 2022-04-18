@@ -44,4 +44,5 @@ export const HighlightedNumber = styled(Number)`
   padding: 5px 10px;
   clip-path: none;
   border-radius: 5px;
+  margin-top: 10px;
 `
